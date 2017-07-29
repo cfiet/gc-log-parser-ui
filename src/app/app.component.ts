@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+import { Store } from '@ngrx/store';
+import { AppState } from './state';
+import { GcEventStartListening } from './gc/actions';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -11,5 +15,9 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private _store: Store<AppState>) {
+    _store.dispatch(new GcEventStartListening());
+
+    _store.select(i => i.events).forEach(console.log);
+  }
 }
