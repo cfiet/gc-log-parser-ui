@@ -1,9 +1,34 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { GcEventNextAction, GcEventType } from './actions';
+import { GcEventNextAction,
+         GcEventPauseListening,
+         GcEventStartListening,
+         GcEventListenerFailed,
+         GcEventType } from './actions';
+import { GcEventsUiState, initialState } from './state';
 
-export function gcEventsReducer(state: GcEventType[] = [], action: Action): GcEventType {
+export function gcEventsReducer(state: GcEventsUiState = initialState, action: Action): GcEventsUiState {
   if (GcEventNextAction.matches(action)) {
-    return state.concat(action.payload);
+    return Object.assign({}, state, {
+      events: state.events.concat(action.payload)
+    });
   }
+  if (GcEventStartListening.matches(action)) {
+    return Object.assign({}, state, {
+      paused: false
+    });
+  }
+  if (GcEventPauseListening.matches(action)) {
+    return Object.assign({}, state, {
+      paused: true
+    });
+  }
+  if (GcEventListenerFailed.matches(action)) {
+    return Object.assign({}, state, {
+      paused: true,
+      retries: state.retries + 1,
+      lastError: action.payload
+    });
+  }
+
   return state;
 }
