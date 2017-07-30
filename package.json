@@ -26,6 +26,7 @@
     "@ngrx/effects": "^4.0.1",
     "@ngrx/store": "^4.0.0",
     "@ngrx/store-devtools": "^4.0.0",
+    "angular2-highcharts": "^0.5.5",
     "core-js": "^2.4.1",
     "d3": "^4.10.0",
     "moment": "^2.18.1",

@@ -3,10 +3,13 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MdToolbarModule } from '@angular/material';
+import { ChartModule } from 'angular2-highcharts';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import * as highcharts from 'highcharts';
 
 import { gcEventsReducer } from './gc/reducer';
 import { GcEventsEffects } from './gc/effects';
@@ -19,6 +22,7 @@ import * as tokens from './tokens';
 import { GcEventsMainComponent } from './gc-events-main.component';
 import { GcEventsChartComponent } from './gc-events-chart.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +33,7 @@ import { GcEventsChartComponent } from './gc-events-chart.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ChartModule.forRoot(highcharts),
 
     EffectsModule.forRoot([GcEventsEffects]),
     StoreModule.forRoot({ gc: gcEventsReducer }),
