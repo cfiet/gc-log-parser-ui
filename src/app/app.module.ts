@@ -17,11 +17,13 @@ import { AppComponent } from './app.component';
 
 import * as tokens from './tokens';
 import { GcEventsMainComponent } from './gc-events-main.component';
+import { GcEventsChartComponent } from './gc-events-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GcEventsMainComponent,
+    GcEventsChartComponent,
   ],
   imports: [
     BrowserModule,

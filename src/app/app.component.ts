@@ -14,7 +14,12 @@ import { GcEventStartListening } from './gc/actions';
     <app-gc-events-main [state]="gcState$ | async" (actions)="dispatchAction($event)">
     </app-gc-events-main>
   `,
-  styles: []
+  styles: [`
+    :host {
+      width: 100%;
+      height: 100%;
+    }
+  `]
 })
 export class AppComponent {
   private gcState$: Observable<GcEventsUiState>;

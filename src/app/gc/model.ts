@@ -9,7 +9,7 @@ export interface HeapSize {
 
 export interface Generations {
   readonly eden: number;
-  readonly survivior: number;
+  readonly survivor: number;
   readonly old: number;
   readonly humongous: number;
 }
@@ -17,7 +17,7 @@ export interface Generations {
 export interface GcEvent {
   readonly timeOffset: TimeOffset;
   readonly heapSize: HeapSize;
-  readonly generationsSizes: Generations;
+  readonly generationSizes: Generations;
   readonly allocationRatePerMb: number;
   readonly fullGcs: number;
   readonly youngGcs: number;
