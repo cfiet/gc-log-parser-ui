@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MdToolbarModule } from '@angular/material';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -13,17 +16,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import * as tokens from './tokens';
+import { GcEventsMainComponent } from './gc-events-main.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GcEventsMainComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
+
     EffectsModule.forRoot([GcEventsEffects]),
-    StoreModule.forRoot({ events: gcEventsReducer }),
-    StoreDevtoolsModule.instrument()
+    StoreModule.forRoot({ gc: gcEventsReducer }),
+    StoreDevtoolsModule.instrument(),
+
+    MdToolbarModule
   ],
   providers: [
     SourceService,

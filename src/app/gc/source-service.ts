@@ -1,5 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/subscribeOn';
+import { async } from 'rxjs/Scheduler/async';
 import { BrowserWindow } from '../tokens';
 import { GcEventType } from './actions';
 
@@ -39,6 +41,7 @@ export class SourceService {
           source.close();
         }
       };
-    });
+    })
+    .subscribeOn(async);
   }
 }

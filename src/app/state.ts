@@ -1,5 +1,5 @@
-import { GcEventType } from './gc/actions';
+import { GcEventsUiState } from './gc/state';
 
 export interface AppState {
-  events: GcEventType[];
+  gc: GcEventsUiState;
 }
