@@ -30,13 +30,13 @@ export class GcEventPauseListening implements Action {
 
 export class GcEventNextAction implements Action {
   readonly type = GC_EVENT_NEXT_ACTION;
-  private constructor(readonly payload: GcEventType) {}
+  private constructor(readonly payload: GcEventType[]) {}
 
   static matches(action: Action): action is GcEventNextAction {
     return action.type === GC_EVENT_NEXT_ACTION;
   }
 
-  static create(payload: GcEventType) { return new GcEventNextAction(payload); }
+  static create(payload: GcEventType[]) { return new GcEventNextAction(payload); }
 }
 
 export class GcEventListenerFailed implements Action {

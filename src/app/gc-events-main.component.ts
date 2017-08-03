@@ -5,7 +5,7 @@ import { GcEventsUiState } from './gc/state';
 @Component({
   selector: 'app-gc-events-main',
   template: `
-    <div class="toolbar">
+    <div class="toolbar" *ngIf="state">
       <md-toolbar color="primary">
         <span>GC logs</span>
 
@@ -15,7 +15,7 @@ import { GcEventsUiState } from './gc/state';
         <span>
           {{state.paused ? 'Paused' : 'Running'}},&nbsp;
         </span>
-        <span *ngIf="!state.events.length">
+        <span *ngIf="!state.events">
           no events captured yet
         </span>
         <span *ngIf="state.events.length">
@@ -24,7 +24,7 @@ import { GcEventsUiState } from './gc/state';
       </md-toolbar>
     </div>
 
-    <div class="content">
+    <div class="content" *ngIf="state && state.events && state.events.length">
       <app-gc-events-chart [events]="state.events"></app-gc-events-chart>
     </div>
   `,

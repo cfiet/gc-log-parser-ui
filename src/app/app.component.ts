@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/throttleTime';
+import { async } from 'rxjs/Scheduler/async';
+import 'rxjs/add/operator/sampleTime';
+import 'rxjs/add/operator/observeOn';
 
 import { Store, Action } from '@ngrx/store';
 import { AppState } from './state';
@@ -26,7 +28,7 @@ export class AppComponent {
   private gcState$: Observable<GcEventsUiState>;
 
   constructor(private _store: Store<AppState>) {
-    this.gcState$ = _store.select(i => i.gc).throttleTime(100);
+    this.gcState$ = _store.select(i => i.gc).observeOn(async);
 
     _store.dispatch(new GcEventStartListening());
   }

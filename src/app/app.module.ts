@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MdToolbarModule } from '@angular/material';
-import { ChartModule } from 'angular2-highcharts';
+import * as hc from 'angular2-highcharts';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -14,6 +14,7 @@ import * as highcharts from 'highcharts';
 import { gcEventsReducer } from './gc/reducer';
 import { GcEventsEffects } from './gc/effects';
 import { SourceService } from './gc/source-service';
+import { initialState } from './gc/state';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,10 +34,10 @@ import { GcEventsChartComponent } from './gc-events-chart.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ChartModule.forRoot(highcharts),
+    hc.ChartModule.forRoot(highcharts),
 
     EffectsModule.forRoot([GcEventsEffects]),
-    StoreModule.forRoot({ gc: gcEventsReducer }),
+    StoreModule.forRoot({ gc: gcEventsReducer }, { initialState: { gc: initialState }}),
     StoreDevtoolsModule.instrument(),
 
     MdToolbarModule

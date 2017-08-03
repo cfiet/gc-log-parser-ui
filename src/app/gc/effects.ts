@@ -7,6 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/bufferTime';
 import 'rxjs/add/observable/of';
 
 import { SourceService } from './source-service';
@@ -24,6 +25,7 @@ export class GcEventsEffects {
   loadGcEvents$ = this.actions$.ofType(GC_EVENT_START_LISTENING).mergeMap(() =>
     this.source.listen()
   )
+  .bufferTime(200)
   .map(GcEventNextAction.create)
   .catch((err, original) =>
     Observable.of(GcEventListenerFailed.create(err))
